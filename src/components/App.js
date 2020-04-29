@@ -1,46 +1,43 @@
-import React, { Component } from 'react';
-import Form from './Form';
-import Result from './Result';
-import './App.css';
+import React, { Component } from "react";
+import Form from "./Form";
+import Result from "./Result";
+import "./App.css";
 
-const KEY = '085f4e9a1bb01af375c061ffa74b3886'; //klucz do API Openweathermap.org
+const KEY = "085f4e9a1bb01af375c061ffa74b3886"; //klucz do API Openweathermap.org
 
 class App extends Component {
-
   state = {
-    value: '',
-    date: '',
-    city: '',
-    sunrise: '',
-    sunset: '',
-    temp: '',
-    pressure: '',
-    wind: '',
-    err: false
-
-  }
+    value: "",
+    date: "",
+    city: "",
+    sunrise: "",
+    sunset: "",
+    temp: "",
+    pressure: "",
+    wind: "",
+    err: false,
+  };
 
   handleInputChange = (e) => {
     this.setState({
-      value: e.target.value
-    })
-  }
+      value: e.target.value,
+    });
+  };
 
   handleCitySubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const API = `http://api.openweathermap.org/data/2.5/weather?q=${this.state.value}
     &appid=${KEY}&units=metric`;
 
     fetch(API)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
-          return response
+          return response;
         }
-        throw Error('Nie udało się')
+        throw Error("Nie udało się");
       })
-      .then(response => response.json())
-      .then(data => {
-
+      .then((response) => response.json())
+      .then((data) => {
         const time = new Date().toLocaleString();
 
         this.setState({
@@ -52,33 +49,28 @@ class App extends Component {
           temp: data.main.temp,
           pressure: data.main.pressure,
           wind: data.wind.speed,
-
-        })
+        });
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
         this.setState({
-          err: true
-        })
-      })
-  }
-
+          err: true,
+        });
+      });
+  };
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Form
           value={this.state.value}
           change={this.handleInputChange}
           submit={this.handleCitySubmit}
         />
-        <Result
-          weather={this.state}
-        />
+        <Result weather={this.state} />
       </div>
     );
   }
 }
-
 
 export default App;
