@@ -3,7 +3,7 @@ import Form from "./Form";
 import Result from "./Result";
 import "./App.css";
 
-const KEY = "085f4e9a1bb01af375c061ffa74b3886"; //klucz do API Openweathermap.org
+const KEY = ""; //klucz do API Openweathermap.org
 
 class App extends Component {
   state = {
