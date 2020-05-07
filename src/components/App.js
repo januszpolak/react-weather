@@ -3,7 +3,7 @@ import Form from "./Form";
 import Result from "./Result";
 import "./App.css";
 
-const KEY = ""; //klucz do API Openweathermap.org
+const KEY = "a051e71017506e78401e478e6128563d"; //klucz do API Openweathermap.org
 
 class App extends Component {
   state = {
@@ -26,7 +26,7 @@ class App extends Component {
 
   handleCitySubmit = (e) => {
     e.preventDefault();
-    const API = `http://api.openweathermap.org/data/2.5/weather?q=${this.state.value}
+    const API = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.value}
     &appid=${KEY}&units=metric`;
 
     fetch(API)
