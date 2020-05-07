@@ -15,6 +15,7 @@ class App extends Component {
     temp: "",
     pressure: "",
     wind: "",
+    desc: "",
     err: false,
   };
 
@@ -49,6 +50,7 @@ class App extends Component {
           temp: data.main.temp,
           pressure: data.main.pressure,
           wind: data.wind.speed,
+          desc: data.weather[0].main,
         });
       })
       .catch((err) => {
